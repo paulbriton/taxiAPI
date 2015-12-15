@@ -24,14 +24,16 @@
   Polymer({
     is: "geomap-element",
     handleResponse: function(event,data) {
-      for(var i=0; i<this.ajaxResponse.length; i++) {
-        var obj = this.ajaxResponse[i];
-        var dynamicEl = document.createElement("google-map-marker");
-        dynamicEl.setAttribute("latitude", obj.lat);
-        dynamicEl.setAttribute("longitude", obj.lon);
-        dynamicEl.setAttribute("icon","../../images/car223.png");
-        Polymer.dom(this.$.map).appendChild(dynamicEl);
-      } 
+      if(this.ajaxResponse) {
+        for(var i=0; i<this.ajaxResponse.length; i++) {
+          var obj = this.ajaxResponse[i];
+          var dynamicEl = document.createElement("google-map-marker");
+          dynamicEl.setAttribute("latitude", obj.lat);
+          dynamicEl.setAttribute("longitude", obj.lon);
+          dynamicEl.setAttribute("icon","../../images/car223.png");
+          Polymer.dom(this.$.map).appendChild(dynamicEl);
+        } 
+      }
     },
     ready: function () {
       var loc = document.querySelector('geo-location');

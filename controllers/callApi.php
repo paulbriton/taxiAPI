@@ -56,7 +56,7 @@ if (isset($_POST['lat']) && isset($_POST['lng'])) {
     $headers = array(
         'Accept: application/json',
         'X-VERSION: 2',
-        'X-API-KEY: xxxxxxxxxxxxxxxxxx'
+        'X-API-KEY: 46f06ed1-0124-4edc-9283-0df69a604ef4'
     );
     $res = callAPI("GET", "https://api.opendatataxi.fr/taxis/", $headers, $data);
     $object = json_decode($res);
