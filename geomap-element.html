@@ -15,7 +15,8 @@
       auto
       headers='{"X-Requested-With": "XMLHttpRequest", "Accept":"application/json"'
       url="/callApi.php"
-      method="GET"
+      method="POST"
+      body='{"lat":"{{lat}}","lng":"{{lng}}"}'
       handle-as="json"
       on-response="handleResponse"
       last-response="{{ajaxResponse}}"
@@ -26,8 +27,12 @@
   Polymer({
     is: "geomap-element",
     ready: function () {
-      this.lat=0;
-      this.lng=0;
+      var loc = document.querySelector('geo-location');
+      loc.addEventListener('geo-response', function(e) {
+        console.log('lat:' + this.latitude, 'lng:' + this.longitude);
+        this.lat=this.latitude;
+        this.lng=this.lng;
+      });
     }
   });
   </script>

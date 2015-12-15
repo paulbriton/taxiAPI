@@ -5,7 +5,7 @@
 //https://api.opendatataxi.fr/taxis/
 //"Accept":"application/json", "X-VERSION": "2", "X-API-KEY":"46f06ed1-0124-4edc-9283-0df69a604ef4"
 
-function CallAPI($method, $url, $data = false)
+function callAPI($method, $url, $data = false)
 {
     $curl = curl_init();
 
