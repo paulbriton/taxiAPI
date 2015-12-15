@@ -1,5 +1,3 @@
-<link rel="import" href="./bower_components/polymer/polymer.html">
-
 <dom-module id="geomap-element">
   <style>
     google-map {
@@ -13,11 +11,10 @@
     </google-map>
     <iron-ajax
       auto
-      headers='{"X-Requested-With": "XMLHttpRequest", "Accept":"application/json"'
-      url="/callApi.php"
+      contentType="application/x-www-form-urlencoded"
+      url="/controllers/callApi.php"
       method="POST"
-      body='{"lat":"{{lat}}","lng":"{{lng}}"}'
-      handle-as="json"
+      body="lat={{lat}}&lng={{lng}}"
       on-response="handleResponse"
       last-response="{{ajaxResponse}}"
       debounce-duration="300"></iron-ajax>
@@ -26,6 +23,9 @@
   <script>
   Polymer({
     is: "geomap-element",
+    handleResponse: function() {
+        //
+    },
     ready: function () {
       var loc = document.querySelector('geo-location');
       loc.addEventListener('geo-response', function(e) {
