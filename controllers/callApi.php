@@ -1,4 +1,7 @@
 <?php
+
+include_once("../class/taxi.class.php");
+
 // Method: POST, PUT, GET etc
 // Data: array("param" => "value") ==> index.php?param=value
 
@@ -60,5 +63,16 @@ if (isset($_POST['lat']) && isset($_POST['lng'])) {
         'X-API-KEY: 46f06ed1-0124-4edc-9283-0df69a604ef4'
     );
     $res = callAPI("GET", "https://api.opendatataxi.fr/taxis/", $headers, $data);
-    var_dump(json_decode($res));
+    $object = json_decode($res);
+    $taxisList = array();
+    foreach ($object->data as $key => $value) {
+        $taxi = new Taxi($value);
+        array_push($taxisList, $taxi);
+    }
+
+    $json = array();
+    foreach ($taxisList as $taxi) {
+        $json[] = $taxi->getCoordinate(); 
+    }
+    echo json_encode($json);
 }

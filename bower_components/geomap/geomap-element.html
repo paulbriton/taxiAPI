@@ -6,8 +6,8 @@
   </style>
   <template>
     <geo-location watch-pos latitude="{{lat}}" longitude="{{lng}}"></geo-location>
-    <google-map latitude="[[lat]]" longitude="[[lng]]">
-      <google-map-marker latitude="[[lat]]" longitude="[[lng]]"></google-map-marker>
+    <google-map id="map" latitude="[[lat]]" longitude="[[lng]]">
+      <google-map-marker icon="../../images/map.png" latitude="[[lat]]" longitude="[[lng]]"></google-map-marker>
     </google-map>
     <iron-ajax
       auto
@@ -23,8 +23,16 @@
   <script>
   Polymer({
     is: "geomap-element",
-    handleResponse: function() {
-        //
+    handleResponse: function(event,data) {
+      for(var i=0; i<this.ajaxResponse.length; i++) {
+        var obj = this.ajaxResponse[i];
+        var dynamicEl = document.createElement("google-map-marker");
+        dynamicEl.setAttribute("latitude", obj.lat);
+        dynamicEl.setAttribute("longitude", obj.lon);
+        dynamicEl.setAttribute("icon","../../images/car223.png");
+        Polymer.dom(this.$.map).appendChild(dynamicEl);
+        //document.getElementById("map").appendChild(dynamicEl);
+      } 
     },
     ready: function () {
       var loc = document.querySelector('geo-location');
