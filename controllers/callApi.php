@@ -4,9 +4,7 @@ include_once("../class/taxi.class.php");
 
 // Method: POST, PUT, GET etc
 // Data: array("param" => "value") ==> index.php?param=value
-
-//https://api.opendatataxi.fr/taxis/
-//"Accept":"application/json", "X-VERSION": "2", "X-API-KEY":"46f06ed1-0124-4edc-9283-0df69a604ef4"
+// Headers: array("param" => "value")   
 
 function callAPI($method, $url, $headers = false, $data = false) {
     $curl = curl_init();
@@ -27,8 +25,6 @@ function callAPI($method, $url, $headers = false, $data = false) {
     }
 
     // Optional Authentication:
-    //curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    //curl_setopt($curl, CURLOPT_USERPWD, "username:password");
     curl_setopt($curl, CURLOPT_HEADER, false);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -50,17 +46,17 @@ if (isset($_POST['lat']) && isset($_POST['lng'])) {
     $lat=$_POST['lat'];
     $lng=$_POST['lng'];
     $data = array(
-        //"lat" => $lat, 
-        //"lon" => $lng
+        "lat" => $lat, 
+        "lon" => $lng
 
         // Test Version
-        "lat" => "48.872614",
-        "lon" => "2.324037"
+        //"lat" => "48.872614",
+        //"lon" => "2.324037"
     );
     $headers = array(
         'Accept: application/json',
         'X-VERSION: 2',
-        'X-API-KEY: 46f06ed1-0124-4edc-9283-0df69a604ef4'
+        'X-API-KEY: xxxxxxxxxxxxxxxxxx'
     );
     $res = callAPI("GET", "https://api.opendatataxi.fr/taxis/", $headers, $data);
     $object = json_decode($res);
