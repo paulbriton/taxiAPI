@@ -1,0 +1,34 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+
+<dom-module id="geomap-element">
+  <style>
+    google-map {
+      height: 500px;
+    }
+  </style>
+  <template>
+    <geo-location watch-pos latitude="{{lat}}" longitude="{{lng}}"></geo-location>
+    <google-map latitude="[[lat]]" longitude="[[lng]]">
+      <google-map-marker latitude="[[lat]]" longitude="[[lng]]"></google-map-marker>
+    </google-map>
+    <iron-ajax
+      auto
+      headers='{"X-Requested-With": "XMLHttpRequest", "Accept":"application/json"'
+      url="/callApi.php"
+      method="GET"
+      handle-as="json"
+      on-response="handleResponse"
+      last-response="{{ajaxResponse}}"
+      debounce-duration="300"></iron-ajax>
+  </template>
+      
+  <script>
+  Polymer({
+    is: "geomap-element",
+    ready: function () {
+      this.lat=0;
+      this.lng=0;
+    }
+  });
+  </script>
+</dom-module>
