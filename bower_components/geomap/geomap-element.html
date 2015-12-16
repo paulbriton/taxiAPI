@@ -1,12 +1,12 @@
 <dom-module id="geomap-element">
   <style>
     google-map {
-      height: 900px;
+      height: 800px;
     }
   </style>
   <template>
     <geo-location watch-pos latitude="{{lat}}" longitude="{{lng}}"></geo-location>
-    <google-map id="map" latitude="[[lat]]" longitude="[[lng]]">
+    <google-map id="map" zoom="15" latitude="[[lat]]" longitude="[[lng]]">
       <google-map-marker icon="../../images/map.png" latitude="[[lat]]" longitude="[[lng]]"></google-map-marker>
     </google-map>
     <iron-ajax
