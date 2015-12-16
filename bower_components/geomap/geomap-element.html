@@ -25,8 +25,7 @@
     is: "geomap-element",
     handleResponse: function(event,data) {
       if(this.ajaxResponse) {
-        var i=0;
-        for(i; i<this.ajaxResponse.length; i++) {
+        for(var i=0; i<this.ajaxResponse.length; i++) {
           var obj = this.ajaxResponse[i];
           var dynamicEl = document.createElement("google-map-marker");
           dynamicEl.setAttribute("latitude", obj.lat);
@@ -34,7 +33,6 @@
           dynamicEl.setAttribute("icon","../../images/car223.png");
           Polymer.dom(this.$.map).appendChild(dynamicEl);
         } 
-        alert(i+" Taxi(s) available near you");
       }
     },
     ready: function () {
