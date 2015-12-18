@@ -1,7 +1,7 @@
 <dom-module id="geomap-element">
   <style>
     google-map {
-      height: 800px;
+      height: 750px;
     }
   </style>
   <template>
@@ -31,6 +31,22 @@
           dynamicEl.setAttribute("latitude", obj.lat);
           dynamicEl.setAttribute("longitude", obj.lon);
           dynamicEl.setAttribute("icon","../../images/car223.png");
+          var content = document.createElement("p");
+          var stringContent = "Note: "+obj.data.rating;
+          var node = document.createTextNode(stringContent);
+          content.appendChild(node);
+          dynamicEl.appendChild(content);
+
+          content = document.createElement("p");
+          stringContent = (obj.data.vehicle.constructor!="string")?"Vehicule: "+obj.data.vehicle.constructor+" "+obj.data.vehicle.model:"";
+          var node = document.createTextNode(stringContent);
+          content.appendChild(node);
+          dynamicEl.appendChild(content);
+
+          var btn = document.createElement("paper-button");
+          btn.appendChild(document.createTextNode("Réservez!"));
+          dynamicEl.appendChild(btn);
+
           Polymer.dom(this.$.map).appendChild(dynamicEl);
         } 
       }
