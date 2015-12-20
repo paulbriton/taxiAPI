@@ -46,12 +46,12 @@ if (isset($_POST['lat']) && isset($_POST['lng'])) {
     $lat=$_POST['lat'];
     $lng=$_POST['lng'];
     $data = array(
-        //"lat" => $lat, 
-        //"lon" => $lng
+        "lat" => $lat, 
+        "lon" => $lng
 
         // Test Version
-        "lat" => "48.872614",
-        "lon" => "2.324037"
+        //"lat" => "48.872614",
+        //"lon" => "2.324037"
     );
     $headers = array(
         'Accept: application/json',
