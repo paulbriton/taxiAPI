@@ -66,9 +66,5 @@ if (isset($_POST['lat']) && isset($_POST['lng'])) {
         array_push($taxisList, $taxi);
     }
 
-    /*$json = array();
-    foreach ($taxisList as $taxi) {
-        $json[] = $taxi->getCoordinate(); 
-    }*/
     echo json_encode($taxisList);
 }
